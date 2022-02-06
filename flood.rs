@@ -59,11 +59,20 @@ fn input_num(prompt: &str, low: u8, high: u8) -> u8 {
     }
 }
 
+fn set_color(c: u8) {
+    // use different bold values to increase contrast
+    print!("\x1b[{};{}m", match c {
+        3|4 => 0,
+        _ => 1,
+    }, 31 + c);
+}
+
 fn render(map: &[u8; WIDTH * HEIGHT]) {
     for y in 0..HEIGHT {
         for x in 0..WIDTH {
             let c = map[y * WIDTH + x];
-            print!("\x1b[{}m██", 31 + c);
+            set_color(c);
+            print!("██");
         }
         println!("\x1b[0m");
     }
@@ -72,9 +81,11 @@ fn render(map: &[u8; WIDTH * HEIGHT]) {
 fn render_status(step: u8) {
     print!("{}/{}", step, 32);
     // move to column
-    print!("\x1b[{}G", WIDTH * 2 - 10);
+    print!("\x1b[{}G", WIDTH * 2 - 6 * 3 + 2);
     for i in 0..6 {
-        print!("\x1b[1;{}m{} ", 31 + i, i + 1);
+        set_color(i);
+        print!("■\x1b[0m{} ", i + 1);
+
     }
     println!("\x1b[0m");
 
