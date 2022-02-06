@@ -129,11 +129,11 @@ fn play(seed: u64) -> bool {
         render_status(step);
         render(&map);
         println!("");
-        let new = input_num("> ", 1, 7) - 1;
-        flood(&mut map, new);
         if map.iter().all(|x| *x == map[0]) {
             return true;
         }
+        let new = input_num("> ", 1, 7) - 1;
+        flood(&mut map, new);
     }
     return false;
 }
