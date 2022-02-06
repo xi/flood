@@ -1,5 +1,7 @@
 Flood fill puzzle game for linux
 
+![screenshot](screenshot.png)
+
 # Gameplay
 
 You start in the upper left hand corner of the board. Enter a number (1-6) to
