@@ -1,4 +1,4 @@
-Flood fill puzzle game for linux
+Flood fill puzzle game for linux terminals
 
 ![screenshot](screenshot.png)
 
