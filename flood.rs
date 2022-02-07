@@ -3,6 +3,7 @@ use std::io::Write;
 
 const WIDTH: usize = 18;
 const HEIGHT: usize = 18;
+const STEPS: u8 = 32;
 
 extern "C" {
     fn getrandom(buf: *mut u8, buflen: usize, flags: u32) -> isize;
@@ -79,7 +80,7 @@ fn render(map: &[u8; WIDTH * HEIGHT]) {
 }
 
 fn render_status(step: u8) {
-    print!("{}/{}", step, 32);
+    print!("{}/{}", step, STEPS);
     // move to column
     print!("\x1b[{}G", WIDTH * 2 - 6 * 3 + 2);
     for i in 0..6 {
@@ -123,7 +124,7 @@ fn play(seed: u64) -> bool {
         map[i] = rng.gen_range(0, 6);
     }
 
-    for step in 0..32 {
+    for step in 0..STEPS {
         // clear screen and move cursor to top left
         print!("\x1b[2J\x1b[H");
         render_status(step);
