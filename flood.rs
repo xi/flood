@@ -71,8 +71,7 @@ fn set_color(c: u8) {
 fn render(map: &[u8; WIDTH * HEIGHT]) {
     for y in 0..HEIGHT {
         for x in 0..WIDTH {
-            let c = map[y * WIDTH + x];
-            set_color(c);
+            set_color(map[y * WIDTH + x]);
             print!("██");
         }
         println!("\x1b[0m");
@@ -88,7 +87,7 @@ fn render_status(step: u8) {
         print!("■\x1b[0m{} ", i + 1);
 
     }
-    println!("\x1b[0m");
+    println!("");
 
 }
 
