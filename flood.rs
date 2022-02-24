@@ -123,9 +123,10 @@ fn play(seed: u64) -> bool {
         map[i] = rng.gen_range(0, 6);
     }
 
+    println!("\x1b[2J");
     for step in 0..=STEPS {
-        // clear screen and move cursor to top left
-        print!("\x1b[2J\x1b[H");
+        // move cursor to top left and clear screen
+        print!("\x1b[H\x1b[J");
         render_status(step);
         render(&map);
         println!("");
