@@ -124,7 +124,8 @@ fn play(seed: u64) -> bool {
     }
 
     println!("\x1b[2J");
-    for step in 0..=STEPS {
+    let mut step = 0;
+    while step <= STEPS {
         // move cursor to top left and clear screen
         print!("\x1b[H\x1b[J");
         render_status(step);
@@ -135,8 +136,12 @@ fn play(seed: u64) -> bool {
         }
         if step < STEPS {
             let new = input_num("> ", 1, 7) - 1;
+            if new == map[0] {
+                continue;
+            }
             flood(&mut map, new);
         }
+        step += 1;
     }
     return false;
 }
